@@ -12,7 +12,7 @@ import (
 
 func sendCommand() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "send [message]",
+		Use:   "send <message>",
 		Short: "send an email",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
