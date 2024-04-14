@@ -5,6 +5,7 @@ import (
 	"os"
 	"runtime/debug"
 
+	"github.com/renevo/rub/commands/email"
 	"github.com/renevo/rub/commands/it"
 
 	"github.com/lmittmann/tint"
@@ -15,7 +16,7 @@ import (
 
 func main() {
 	if err := mainErr(); err != nil {
-		slog.Error("rub error", "err", err)
+		slog.Error("rub error", "error", err)
 		os.Exit(1)
 	}
 }
@@ -65,6 +66,7 @@ func mainErr() error {
 	rootCommand.PersistentFlags().BoolP("json", "j", false, "Enable JSON logging output")
 	rootCommand.PersistentFlags().Bool("no-color", false, "Disable colorized output on text")
 
+	rootCommand.AddCommand(email.Commands())
 	rootCommand.AddCommand(it.Commands())
 
 	return rootCommand.Execute()
